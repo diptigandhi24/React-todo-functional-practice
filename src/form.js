@@ -1,8 +1,21 @@
-import React from "react";
-function Form(props) {
+import React, { useState } from "react";
+function Form({ addToList, list }) {
+  let [inputText, setInputText] = useState("");
+  const onChangeText = e => {
+    setInputText(e.target.value);
+  };
+  const submitInput = e => {
+    e.preventDefault();
+    let newItem = {
+      text: inputText,
+      id: Date.now()
+    };
+    setInputText("");
+    addToList(list.concat(newItem));
+  };
   return (
-    <form onSubmit={props.onSubmitHandler}>
-      <input type="text" value={props.value} onChange={props.onChange} />
+    <form onSubmit={submitInput}>
+      <input type="text" value={inputText} onChange={onChangeText} />
       <button type="submit">Submit</button>
     </form>
   );

@@ -7,7 +7,9 @@ function Todo(props) {
     return (
       <ul>
         {list.map(item => (
-          <li key={item.id}>{item.text}</li>
+            <li key={item.id} data-key={item.id}>
+              {item.text}
+            </li>
         ))}
       </ul>
     );
